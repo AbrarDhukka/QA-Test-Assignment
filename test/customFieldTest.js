@@ -19,6 +19,7 @@ describe("Verify User Custom Field Functionality", function () {
 
   //positive scenarios
   it("Verify User custom field - Date : Add/Display/Toggle", async function () {
+
     //Login
     const element = await driver.wait(
       until.elementLocated(
@@ -27,8 +28,7 @@ describe("Verify User Custom Field Functionality", function () {
         )
       ),
       20000
-    ); // 10000 milliseconds (10 seconds) timeout as an example
-
+    ); 
     await element.click();
     await driver
       .findElement(By.id("email-field"))
@@ -85,7 +85,6 @@ describe("Verify User Custom Field Functionality", function () {
       .click();
     console.log("Clicked on add field");
 
-    // 1. First input field
     await driver
       .findElement(
         By.xpath(
@@ -94,7 +93,6 @@ describe("Verify User Custom Field Functionality", function () {
       )
       .sendKeys("Abrar-Test-Date");
 
-    // 2. Second input field
     await driver
       .findElement(
         By.xpath(
@@ -103,7 +101,6 @@ describe("Verify User Custom Field Functionality", function () {
       )
       .click();
 
-    // 3. Selecting option from the second input field
     await driver
       .findElement(By.xpath("//nz-option-container//nz-option-item[6]"))
       .click();
@@ -273,7 +270,7 @@ describe("Verify User Custom Field Functionality", function () {
         )
       ),
       20000
-    ); // 10000 milliseconds (10 seconds) timeout as an example
+    ); 
 
     await element.click();
     await driver
