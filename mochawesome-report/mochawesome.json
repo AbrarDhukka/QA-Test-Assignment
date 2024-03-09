@@ -1,0 +1,214 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-03-09T11:27:18.849Z",
+    "end": "2024-03-09T11:28:38.648Z",
+    "duration": 79799,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "260987d3-188c-4446-8f5c-6b76ee60adef",
+      "title": "",
+      "fullFile": "C:\\Users\\abrdh\\OneDrive\\Desktop\\QA_Test_Assignment\\QA_TEST_01\\test\\profilePhotoTest.js",
+      "file": "\\test\\profilePhotoTest.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+          "title": "Verify Workspace setting and image upload/delete functionality",
+          "fullFile": "C:\\Users\\abrdh\\OneDrive\\Desktop\\QA_Test_Assignment\\QA_TEST_01\\test\\profilePhotoTest.js",
+          "file": "\\test\\profilePhotoTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Verify Workspace setting and image upload/delete functionality\"",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality \"before each\" hook in \"Verify Workspace setting and image upload/delete functionality\"",
+              "timedOut": false,
+              "duration": 6631,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Launch browser\ndriver = await new Builder().forBrowser(\"chrome\").build();\n// Maximize the window\nawait driver.manage().window().maximize();\n// Navigate to application\nawait driver.get(\"https://dev.klaarhq.com\");",
+              "err": {},
+              "uuid": "25ea5994-eca1-4331-8888-8a49e2f05d69",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Verify Workspace setting and image upload/delete functionality\"",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality \"after each\" hook in \"Verify Workspace setting and image upload/delete functionality\"",
+              "timedOut": false,
+              "duration": 173,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Close the browser after each tests are done\nawait driver.quit();",
+              "err": {},
+              "uuid": "8fc2e5c2-470a-4b1a-8cd1-7abb4d265115",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Verify login and Workspace setting page functionality",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality Verify login and Workspace setting page functionality",
+              "timedOut": false,
+              "duration": 6719,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Locate the sign-in with Klarr button and click it\nconst signInButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/div/div[3]/div'\n    )\n  ),\n  20000\n);\nawait signInButton.click();\n// Enter login credentials\nawait driver\n  .findElement(By.id(\"email-field\"))\n  .sendKeys(\"deepa.nayak@gamma.klaar.team\");\nawait driver.findElement(By.id(\"password-field\")).sendKeys(\"Klaar2021\");\n// Click the login button\nawait driver\n  .findElement(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/nz-spin/div/form/nz-form-item[2]/nz-form-control/div/div/nz-input-group/span'\n    )\n  )\n  .click();\nawait driver.findElement(By.id(\"login-btn\")).click();\nconsole.log(\"Clicked on login\");\n// Wait for a while to ensure successful login\nawait driver.sleep(2000);\n// Navigate to Workspace settings\nconst settingsButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[2]/ul/div[7]/button/li'\n    )\n  ),\n  20000\n);\nawait settingsButton.click();\nconsole.log(\"Clicked on settings\");\n// Verify functionality and presence of the \"Workspace\" section\nawait driver.sleep(3000);\nconst workspaceHeaderText = await driver\n  .findElement(By.xpath(\"//nz-page-header/div[1]/div[1]\"))\n  .getText();\nconsole.log(\"Workspace Header Text - \", workspaceHeaderText);\nif (workspaceHeaderText.includes(\"Workspace\")) {\n  console.log(\"Workspace is present\");\n} else {\n  console.log(\"Workspace is not present\");\n}\n// Navigate to \"Customize Modules\" section\nawait driver\n  .findElement(By.xpath(\"//a[contains(text(),'Customize Modules')]\"))\n  .click();\nconst customizeModulesHeaderText = await driver\n  .findElement(By.xpath(\"//nz-page-header/div[1]/div[1]\"))\n  .getText();\nconsole.log(\"Customize Modules Header Text - \", customizeModulesHeaderText);\nif (customizeModulesHeaderText.includes(\"Customize Modules\")) {\n  console.log(\n    \"Customize Modules is present, and the page is working successfully\"\n  );\n} else {\n  console.log(\"Customize Modules is not present\");\n}\n// Navigate back to the \"Workspace\" section\nawait driver\n  .findElement(By.xpath(\"//a[contains(text(),'Workspace')]\"))\n  .click();",
+              "err": {},
+              "uuid": "8ae0b3f0-d733-4d8a-8ef5-1deee8ed8bb1",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify user is able to upload workspace logo successfully",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality Verify user is able to upload workspace logo successfully",
+              "timedOut": false,
+              "duration": 10281,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Login steps\nconst signInButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/div/div[3]/div'\n    )\n  ),\n  20000\n);\nawait signInButton.click();\nawait driver\n  .findElement(By.id(\"email-field\"))\n  .sendKeys(\"deepa.nayak@gamma.klaar.team\");\nawait driver.findElement(By.id(\"password-field\")).sendKeys(\"Klaar2021\");\nawait driver\n  .findElement(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/nz-spin/div/form/nz-form-item[2]/nz-form-control/div/div/nz-input-group/span'\n    )\n  )\n  .click();\nawait driver.findElement(By.id(\"login-btn\")).click();\nconsole.log(\"Clicked on login\");\nawait driver.sleep(2000);\n// Navigate to settings\nconst settingsButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[2]/ul/div[7]/button/li'\n    )\n  ),\n  20000\n);\nawait settingsButton.click();\nconsole.log(\"Clicked on settings\");\n// Scroll into view and upload workspace logo\nconst chooseFileButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-layout/nz-content/div/app-settings/nz-spin/div/div/nz-card[3]/div/div/nz-spin/div/nz-upload/div/div/input'\n    )\n  ),\n  90000\n);\nawait driver.executeScript(\n  \"arguments[0].scrollIntoView();\",\n  chooseFileButton\n);\n// Upload image\nawait chooseFileButton.sendKeys(\n  \"C://Users//abrdh//OneDrive//Desktop//QA_Test_Assignment//QA_TEST_01//demo-face.png\"\n);\nconst saveButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-layout/nz-content/div/app-settings/nz-spin/div/div/nz-card[3]/div/div/nz-spin/div/div/div/button[1]'\n    )\n  ),\n  90000\n);\nawait driver.executeScript(\"arguments[0].scrollIntoView();\", saveButton);\nconst actions = driver.actions();\nawait actions.move({ origin: saveButton }).click().perform();\nconsole.log(\"Image uploaded successfully\");\n// Wait for save button to be stale\nawait driver.wait(until.stalenessOf(saveButton), 90000);\n// Verify uploaded logo\nconst sideLogo = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[1]/div/img'\n    )\n  ),\n  90000\n);\nconst uploadedLogo = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-layout/nz-content/div/app-settings/nz-spin/div/div/nz-card[3]/div/div/nz-spin/div/nz-upload/div/div/div/div[1]/img'\n    )\n  ),\n  90000\n);\nconst sideLogoSrc = await sideLogo.getAttribute(\"src\");\nconsole.log(\"SideLogo - \", sideLogoSrc);\nconst uploadedLogoSrc = await uploadedLogo.getAttribute(\"src\");\nconsole.log(\"uploadLogo - \", uploadedLogoSrc);\n// Compare logo sources\nif (sideLogoSrc === uploadedLogoSrc) {\n  console.log(\"Uploaded image is matching\");\n} else {\n  console.log(\"Uploaded image is not matching\");\n}\n// Wait for save button to be stale again\nawait driver.wait(until.stalenessOf(saveButton), 90000);\nawait driver.sleep(2000);",
+              "err": {},
+              "uuid": "da44fa6f-81b1-48f0-9600-cdde7b107a5d",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify user is able to delete workspace logo successfully",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality Verify user is able to delete workspace logo successfully",
+              "timedOut": false,
+              "duration": 10404,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Login steps\nconst signInButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/div/div[3]/div'\n    )\n  ),\n  20000\n);\nawait signInButton.click();\nawait driver\n  .findElement(By.id(\"email-field\"))\n  .sendKeys(\"deepa.nayak@gamma.klaar.team\");\nawait driver.findElement(By.id(\"password-field\")).sendKeys(\"Klaar2021\");\nawait driver\n  .findElement(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/nz-spin/div/form/nz-form-item[2]/nz-form-control/div/div/nz-input-group/span'\n    )\n  )\n  .click();\nawait driver.findElement(By.id(\"login-btn\")).click();\nconsole.log(\"Clicked on login\");\nawait driver.sleep(2000);\n// Navigate to settings\nconst settingsButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[2]/ul/div[7]/button/li'\n    )\n  ),\n  20000\n);\nawait settingsButton.click();\nconsole.log(\"Clicked on settings\");\n// Locate delete logo button\nconst deleteLogo = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      \"//body/div[@id='main-app']/app-root[1]/app-layout[1]/nz-layout[1]/nz-layout[1]/nz-content[1]/div[1]/app-settings[1]/nz-spin[1]/div[1]/div[1]/nz-card[3]/div[1]/div[1]/nz-spin[1]/div[1]/nz-upload[1]/div[1]/div[1]/div[1]/button[1]\"\n    )\n  ),\n  90000\n);\n// Scroll into view\nawait driver.executeScript(\"arguments[0].scrollIntoView();\", deleteLogo);\n// Click delete logo button\nawait driver.sleep(5000);\nawait deleteLogo.click();\nconsole.log(\"Clicked delete circle logo successfully\");\n// Locate confirm delete button\nconst deletedLogo = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-layout/nz-content/div/app-settings/nz-spin/div/div/nz-card[3]/div/div/nz-spin/div/div/div/button[2]'\n    )\n  ),\n  90000\n);\n// Click confirm delete button\nawait deletedLogo.click();\nconsole.log(\"Image deleted successfully\");\n// Verify default logo after deletion\nconst defaultSideLogo = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[1]/div/img'\n    )\n  ),\n  90000\n);\nconst defaultSideLogoSrc = await defaultSideLogo.getAttribute(\"src\");\nif (\n  defaultSideLogoSrc ===\n  \"https://klaar-resources.s3.ap-south-1.amazonaws.com/KlaarLogoShort.png\"\n) {\n  console.log(\n    \"Image deleted successfully, and I am able to see the default image.\"\n  );\n}",
+              "err": {},
+              "uuid": "b0923258-1051-47e8-8f84-32030e22fe72",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify user is not able to login with invalid credentials",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality Verify user is not able to login with invalid credentials",
+              "timedOut": false,
+              "duration": 2821,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Wait until the element is visible (adjust the timeout as needed)\nconst signInButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/div/div[3]/div'\n    )\n  ),\n  20000\n);\n// Perform login with invalid credentials\nawait signInButton.click();\nawait driver.findElement(By.id(\"email-field\")).sendKeys(\"xyz@gmail.com\");\nawait driver.findElement(By.id(\"password-field\")).sendKeys(\"xyz123\");\nawait driver\n  .findElement(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/nz-spin/div/form/nz-form-item[2]/nz-form-control/div/div/nz-input-group/span'\n    )\n  )\n  .click();\nawait driver.findElement(By.id(\"login-btn\")).click();\nconsole.log(\"Clicked on login\");\n// Wait for a while to check for error message\nawait driver.sleep(2000);\n// Check for the error message\nconst failureMsg = await driver\n  .findElement(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/app-alerts/div'\n    )\n  )\n  .getText();\nif (failureMsg.includes(\"Oops! Incorrect Email or Password\")) {\n  console.log(\"Got error message successfully - \", failureMsg);\n} else {\n  console.log(\"Didn't get error message\");\n}",
+              "err": {},
+              "uuid": "4d6decd9-855a-4b9f-ae2d-8be643a1d1d0",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify user is uploading logo without saving",
+              "fullTitle": "Verify Workspace setting and image upload/delete functionality Verify user is uploading logo without saving",
+              "timedOut": false,
+              "duration": 7529,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Login steps\nconst signInButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/div/div[3]/div'\n    )\n  ),\n  20000\n);\nawait signInButton.click();\nawait driver\n  .findElement(By.id(\"email-field\"))\n  .sendKeys(\"deepa.nayak@gamma.klaar.team\");\nawait driver.findElement(By.id(\"password-field\")).sendKeys(\"Klaar2021\");\nawait driver\n  .findElement(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-sign-in/nz-spin/div/div[1]/div[2]/div/nz-spin/div/form/nz-form-item[2]/nz-form-control/div/div/nz-input-group/span'\n    )\n  )\n  .click();\nawait driver.findElement(By.id(\"login-btn\")).click();\nconsole.log(\"Clicked on login\");\nawait driver.sleep(2000);\n// Navigate to settings\nconst settingsButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[2]/ul/div[7]/button/li'\n    )\n  ),\n  20000\n);\nawait settingsButton.click();\nconsole.log(\"Clicked on settings\");\n// Scroll into view and upload workspace logo\nconst chooseFileButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-layout/nz-content/div/app-settings/nz-spin/div/div/nz-card[3]/div/div/nz-spin/div/nz-upload/div/div/input'\n    )\n  ),\n  90000\n);\nawait driver.executeScript(\n  \"arguments[0].scrollIntoView();\",\n  chooseFileButton\n);\n// Upload image\nawait chooseFileButton.sendKeys(\n  \"C://Users//abrdh//OneDrive//Desktop//QA_Test_Assignment//QA_TEST_01//demo-face.png\"\n);\nconst cancelButton = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-layout/nz-content/div/app-settings/nz-spin/div/div/nz-card[3]/div/div/nz-spin/div/div/div/button[2]'\n    )\n  ),\n  90000\n);\nawait driver.executeScript(\"arguments[0].scrollIntoView();\", cancelButton);\nconst actions = driver.actions();\nawait actions.move({ origin: cancelButton }).click().perform();\nconsole.log(\"Image not uploaded\");\n// Wait for cancel button to be stale\nawait driver.wait(until.stalenessOf(cancelButton), 90000);\n// Verify default logo after cancellation\nconst defaultSideLogo = await driver.wait(\n  until.elementLocated(\n    By.xpath(\n      '//*[@id=\"main-app\"]/app-root/app-layout/nz-layout/nz-sider/div/div/div[1]/div[1]/div/img'\n    )\n  ),\n  90000\n);\nconst defaultSideLogoSrc = await defaultSideLogo.getAttribute(\"src\");\nif (\n  defaultSideLogoSrc ===\n  \"https://klaar-resources.s3.ap-south-1.amazonaws.com/KlaarLogoShort.png\"\n) {\n  console.log(\n    \"Logo upload cancelled successfully, and I am able to see the default image.\"\n  );\n}\n\nawait driver.sleep(2000);",
+              "err": {},
+              "uuid": "9ace2dd4-7936-4349-99cc-591fd29cd2e0",
+              "parentUUID": "281bceac-9fe6-41be-9c9d-40c4c9b22c6f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8ae0b3f0-d733-4d8a-8ef5-1deee8ed8bb1",
+            "da44fa6f-81b1-48f0-9600-cdde7b107a5d",
+            "b0923258-1051-47e8-8f84-32030e22fe72",
+            "4d6decd9-855a-4b9f-ae2d-8be643a1d1d0",
+            "9ace2dd4-7936-4349-99cc-591fd29cd2e0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 37754,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.3.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
