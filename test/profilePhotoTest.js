@@ -1,6 +1,7 @@
 const { Builder, By, until, Key } = require("selenium-webdriver");
 
 describe("Verify Workspace setting and image upload/delete functionality", function () {
+  
   beforeEach(async function () {
     // Launch browser
     driver = await new Builder().forBrowser("chrome").build();
