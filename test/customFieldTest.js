@@ -1,6 +1,7 @@
 const { Builder, By, until, Key } = require("selenium-webdriver");
 
 describe("Verify User Custom Field Functionality", function () {
+  
   beforeEach(async function () {
     // Launch browser
     driver = await new Builder().forBrowser("chrome").build();
@@ -826,5 +827,5 @@ describe("Verify User Custom Field Functionality", function () {
       console.log('Label with text "Abrar-Test-Date" not found.');
     }
   });
-  
+
 });
